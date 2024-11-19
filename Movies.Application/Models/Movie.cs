@@ -1,4 +1,4 @@
-namespace Movies.Api.Models;
+namespace Movies.Application.Models;
 
 public class Movie
 {

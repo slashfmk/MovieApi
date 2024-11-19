@@ -1,6 +1,6 @@
-using Movies.Api.Models;
+using Movies.Application.Models;
 
-namespace Movies.Api.Repository;
+namespace Movies.Application.Repository;
 
 public interface IMovieRepository
 {
