@@ -17,7 +17,5 @@ public class Movie
 
         return $"{sluggedTitle}-{YearOfRelease}";
     }
-
-    // [GeneratedRegex("0-9A-Za-z _-", RegexOptions.NonBacktracking, 5)]
-    // private static partial Regex SlugRegex();
+    
 }
