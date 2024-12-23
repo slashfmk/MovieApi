@@ -11,26 +11,17 @@ public static class ApplicationServiceCollectionExtension
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddSingleton<IMovieService, MovieService>();
+        services.AddScoped<IMovieService, MovieService>();
         services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);
 
         return services;
     }
-
-    public static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString)
-    {
-        services.AddSingleton<IDbConnectionFactory>(_ =>
-            new NpgsqlConnectionFactory(connectionString));
     
-        services.AddSingleton<DbInitializer>();
-    
-        return services;
-    }
 
     public static IServiceCollection AddSqlServerDbContext(this IServiceCollection services, string connectionString)
 
     {
-        services.AddDbContext<MovieContext>( options => options.UseSqlServer(connectionString));
+        services.AddDbContext<MovieDbContext>( options => options.UseSqlServer(connectionString));
         return services;
     }
     

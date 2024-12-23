@@ -21,7 +21,7 @@ public class ValidationMappingMiddleware
         }
         catch (ValidationException exception)
         {
-            context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
             var validationFailureResponse = new ValidationFailureResponse
             {

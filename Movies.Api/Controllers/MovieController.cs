@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Api.Mapping;
+using Movies.Application.Dtos.Requests;
 using Movies.Application.Services;
-using Movies.Contracts.Requests;
 using Movies.Contracts.Responses;
 
 namespace Movies.Api.Controllers;

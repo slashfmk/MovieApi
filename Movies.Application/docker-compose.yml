@@ -2,13 +2,31 @@ version: '3.9'
 
 services:
   
-    db:
-      image: postgres:latest
+#    db:
+#      image: postgres:latest
+#      restart: always
+#      environment:
+#        - POSTGRES_USER=course
+#        - POSTGRES_PASSWORD=Password7
+#        - POSTGRES_DB=movies
+#
+#      ports:
+#        - '5432:5432'
+  
+    mssql:
+      container_name: mssql-db
+      hostname: mssql-db
+      image: mcr.microsoft.com/mssql/server:2022-latest
       restart: always
       environment:
-        - POSTGRES_USER=course
-        - POSTGRES_PASSWORD=Password7
-        - POSTGRES_DB=movies
-          
+        ACCEPT_EULA: 'Y'
+        MSSQL_SA_PASSWORD: 'Password7!'
+        MSSQL_DATA_DIR: /var/opt/mssql/data
+        MSSQL_PID: 'Developer'
+        MSSQL_TCP_PORT: 1433
       ports:
-        - '5432:5432'
+        - "1433:1433"
+      volumes:
+        - ./sqlserver/data:/var/opt/mssql/data
+        - ./sqlserver/log:/var/opt/mssql/log
+        - ./sqlserver/secrets:/var/opt/mssql/secrets
