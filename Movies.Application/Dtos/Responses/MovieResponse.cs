@@ -1,6 +1,6 @@
 using Movies.Application.Models;
 
-namespace Movies.Contracts.Responses;
+namespace Movies.Application.Dtos.Responses;
 
 public sealed class MovieResponse
 {

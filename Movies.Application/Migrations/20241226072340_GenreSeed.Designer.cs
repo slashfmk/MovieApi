@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movies.Application.Database;
 
@@ -11,9 +12,11 @@ using Movies.Application.Database;
 namespace Movies.Application.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    partial class MovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241226072340_GenreSeed")]
+    partial class GenreSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,7 @@ namespace Movies.Application.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -45,51 +48,51 @@ namespace Movies.Application.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e910a588-612c-42fd-ae0c-555f672eb3bf"),
+                            Id = new Guid("97bc81e1-bec7-4ba1-9e8e-53f2cc41d356"),
                             Description = "Action",
-                            Title = "Action"
+                            Name = "Action"
                         },
                         new
                         {
-                            Id = new Guid("a1b852e7-5a34-43eb-980f-0875fb1d58e9"),
+                            Id = new Guid("79fb5cb4-279c-49ea-b5fd-a6497b5b5733"),
                             Description = "Adventure",
-                            Title = "Adventure"
+                            Name = "Adventure"
                         },
                         new
                         {
-                            Id = new Guid("72b914ea-a9d7-43c6-8a20-7c12dd6658f2"),
+                            Id = new Guid("05c69db2-4825-4591-8478-feba4d850d87"),
                             Description = "Drama",
-                            Title = "Drama"
+                            Name = "Drama"
                         },
                         new
                         {
-                            Id = new Guid("633aba6f-d3c0-46ad-aa26-4a753747eb9f"),
+                            Id = new Guid("c7e1e772-817a-4063-817a-9b93047fdfcc"),
                             Description = "Fantasy",
-                            Title = "Fantasy"
+                            Name = "Fantasy"
                         },
                         new
                         {
-                            Id = new Guid("03d560f4-ba2f-490a-8084-adaaa031246a"),
+                            Id = new Guid("27128d98-fdff-4790-9d2a-4b73f6cde732"),
                             Description = "Horror",
-                            Title = "Horror"
+                            Name = "Horror"
                         },
                         new
                         {
-                            Id = new Guid("d8e034a2-f63e-4b9a-98b4-9cbd7ded53f8"),
+                            Id = new Guid("472f8a03-ad48-467b-9051-fad5c8bcbf96"),
                             Description = "Romance",
-                            Title = "Romance"
+                            Name = "Romance"
                         },
                         new
                         {
-                            Id = new Guid("22f205fa-b4b0-47d5-9387-b9c9a158eb67"),
+                            Id = new Guid("9c5e6724-a6c2-41cb-acd5-52cdb5cd125e"),
                             Description = "Science Fiction",
-                            Title = "Science Fiction"
+                            Name = "Science Fiction"
                         },
                         new
                         {
-                            Id = new Guid("5ea82b38-4cc7-4ae1-a4eb-9a85f23ea033"),
+                            Id = new Guid("6140768d-83c2-46c1-bc5c-8e6b4559d14b"),
                             Description = "Thriller",
-                            Title = "Thriller"
+                            Name = "Thriller"
                         });
                 });
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movies.Application.Database;
 
@@ -11,9 +12,11 @@ using Movies.Application.Database;
 namespace Movies.Application.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    partial class MovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250103003054_GenreRefactor")]
+    partial class GenreRefactor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,56 +44,6 @@ namespace Movies.Application.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e910a588-612c-42fd-ae0c-555f672eb3bf"),
-                            Description = "Action",
-                            Title = "Action"
-                        },
-                        new
-                        {
-                            Id = new Guid("a1b852e7-5a34-43eb-980f-0875fb1d58e9"),
-                            Description = "Adventure",
-                            Title = "Adventure"
-                        },
-                        new
-                        {
-                            Id = new Guid("72b914ea-a9d7-43c6-8a20-7c12dd6658f2"),
-                            Description = "Drama",
-                            Title = "Drama"
-                        },
-                        new
-                        {
-                            Id = new Guid("633aba6f-d3c0-46ad-aa26-4a753747eb9f"),
-                            Description = "Fantasy",
-                            Title = "Fantasy"
-                        },
-                        new
-                        {
-                            Id = new Guid("03d560f4-ba2f-490a-8084-adaaa031246a"),
-                            Description = "Horror",
-                            Title = "Horror"
-                        },
-                        new
-                        {
-                            Id = new Guid("d8e034a2-f63e-4b9a-98b4-9cbd7ded53f8"),
-                            Description = "Romance",
-                            Title = "Romance"
-                        },
-                        new
-                        {
-                            Id = new Guid("22f205fa-b4b0-47d5-9387-b9c9a158eb67"),
-                            Description = "Science Fiction",
-                            Title = "Science Fiction"
-                        },
-                        new
-                        {
-                            Id = new Guid("5ea82b38-4cc7-4ae1-a4eb-9a85f23ea033"),
-                            Description = "Thriller",
-                            Title = "Thriller"
-                        });
                 });
 
             modelBuilder.Entity("Movies.Application.Models.Movie", b =>

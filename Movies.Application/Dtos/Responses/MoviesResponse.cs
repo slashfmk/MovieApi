@@ -1,4 +1,6 @@
-namespace Movies.Contracts.Responses;
+using Movies.Contracts.Responses;
+
+namespace Movies.Application.Dtos.Responses;
 
 public sealed class MoviesResponse
 {

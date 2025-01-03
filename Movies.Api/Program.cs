@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Movies.Api.Mapping;
 using Movies.Application;
 using Movies.Application.Database;
@@ -13,6 +14,9 @@ builder.Services.AddSwaggerGen();
 // builder.Services.AddSqlServerDbContext(builder.Configuration["Database:DefaultConnection"]!);
 builder.Services.AddSqlServerDbContext(builder.Configuration.GetConnectionString("DefaultConnection")!);
 builder.Services.AddApplication();
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 

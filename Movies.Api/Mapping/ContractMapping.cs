@@ -1,4 +1,5 @@
 using Movies.Application.Dtos.Requests;
+using Movies.Application.Dtos.Responses;
 using Movies.Application.Models;
 using Movies.Contracts.Responses;
 
@@ -43,5 +44,44 @@ public static class ContractMapping
     public static MoviesResponse MapToResponse(this IEnumerable<Movie> movies)
     {
         return new MoviesResponse { Items = movies.Select(MapToResponse)};
+    }
+    
+    
+    /*
+     ****** Genre mapping ******
+     */
+    public static Genre MapToGenre(this CreateGenreRequest request)
+    {
+        return new Genre
+        {
+            Id = Guid.NewGuid(),
+            Title = request.Title,
+            Description = request.Description
+        };
+    }
+    
+    public static Genre MapToGenre(this UpdateGenreRequest request, Guid id)
+    {
+        return new Genre
+        {
+            Id = id,
+            Title = request.Title,
+            Description = request.Description
+        };
+    }
+
+    public static GenreResponse MapToResponse(this Genre genre)
+    {
+        return new GenreResponse
+        {
+            Id = genre.Id,
+            Title = genre.Title,
+            Description = genre.Description
+        };
+    }
+
+    public static GenresResponse MapToResponse(this IEnumerable<Genre> movies)
+    {
+        return new GenresResponse { Items = movies.Select(MapToResponse)};
     }
 }

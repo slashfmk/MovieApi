@@ -4,10 +4,10 @@ namespace Movies.Application.Services;
 
 public interface IMovieService
 {
-    Task<bool> CreateAsync(Movie movie);
-    Task<Movie?> GetByIdAsync(Guid id);
-    Task<Movie?> GetBySlugAsync(string slug);
-    Task<IEnumerable<Movie>> GetAllAsync();
-    Task<bool> UpdateAsync(Movie movie);
-    Task<bool> DeleteByIdAsync(Guid id);
+    Task<bool> CreateAsync(Movie movie, CancellationToken cancellationToken);
+    Task<Movie?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Movie?> GetBySlugAsync(string slug, CancellationToken cancellationToken);
+    Task<IEnumerable<Movie>> GetAllAsync(CancellationToken cancellationToken);
+    Task<bool> UpdateAsync(Movie movie, CancellationToken cancellationToken);
+    Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
 }

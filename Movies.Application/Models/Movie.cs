@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Movies.Application.Models;
@@ -8,7 +9,7 @@ public class Movie
     public string Title { get; set; }
     public int YearOfRelease { get; set; }
     
-    public List<MovieGenre> MovieGenres { get; set; } = new List<MovieGenre>();
+    public ICollection<MovieGenre>? MovieGenres { get; set; }
 
     public string Slug => GenerateSlug();
     
