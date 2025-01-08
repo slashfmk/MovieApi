@@ -44,8 +44,8 @@ public class MovieController : ControllerBase
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         var movies = await _movieService.GetAllAsync(cancellationToken);
-        var items = new MoviesResponse { Items = movies.Select(x => x.MapToResponse()) };
-        return Ok(movies);
+        var items = new MoviesResponse { Items = movies };
+        return Ok(items);
     }
 
 

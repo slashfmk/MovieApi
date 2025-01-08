@@ -33,7 +33,6 @@ public class ValidationMappingMiddleware
             };
 
             await context.Response.WriteAsJsonAsync(validationFailureResponse);
-            ;
         }
     }
 }

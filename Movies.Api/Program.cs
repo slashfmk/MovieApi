@@ -15,9 +15,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServerDbContext(builder.Configuration.GetConnectionString("DefaultConnection")!);
 builder.Services.AddApplication();
 
-builder.Services.AddControllers().AddJsonOptions(x =>
-   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

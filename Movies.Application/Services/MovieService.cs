@@ -1,3 +1,4 @@
+using System.Collections;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Movies.Application.Database;
@@ -44,23 +45,29 @@ public class MovieService : IMovieService
     //TODO need a full implementation
     public async Task<IEnumerable<MovieResponse>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Movies
-            .Select(m => new MoviesResponse
+        var result = await _dbContext.Movies
+            .Select(m => new MovieResponse
             {
-               Items = 
+                Id = m.Id,
+                Title = m.Title,
+                Slug = m.Slug,
+                YearOfRelease = m.YearOfRelease,
+                Genres = m.MovieGenres.Select(g => new GenreResponse
+                {
+                    Id = g.Genre.Id,
+                    Title = g.Genre.Title,
+                    Description = g.Genre.Description
+                })
             })
             .ToListAsync(cancellationToken);
-        
-        // .Select(m => new {Title = m.Title, Genre = m.MovieGenres.SelectMany(g => g.Genre)})
-        // .Include(m => m.MovieGenres)
-        // .ThenInclude(g => g.Genre)
-        // .ToListAsync(cancellationToken);
+
+        return result;
     }
 
     public async Task<bool> UpdateAsync(Movie movie, CancellationToken cancellationToken = default)
     {
         await _movieValidator.ValidateAndThrowAsync(movie, cancellationToken);
-        ;
+
         var foundMovie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Id == movie.Id, cancellationToken);
 
         if (foundMovie == null)
