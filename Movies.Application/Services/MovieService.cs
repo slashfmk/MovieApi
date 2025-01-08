@@ -1,4 +1,3 @@
-using System.Collections;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Movies.Application.Database;
@@ -41,8 +40,7 @@ public class MovieService : IMovieService
 
         return movie;
     }
-
-    //TODO need a full implementation
+    
     public async Task<IEnumerable<MovieResponse>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         var result = await _dbContext.Movies
