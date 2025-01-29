@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Movies.Application.Auth;
 using Movies.Application.Database;
 using Movies.Application.Services;
 using Npgsql;
@@ -15,9 +14,8 @@ public static class ApplicationServiceCollectionExtension
     {
         services.AddScoped<IMovieService, MovieService>();
         services.AddScoped<IGenreService, GenreService>();
-        services.AddScoped<IUserService, UserService>();
-        services.AddSingleton<IPasswordService, PasswordService>();
-        services.AddSingleton<TokenGenerator>();
+        // services.AddScoped<IUserService, UserService>();
+        // services.AddSingleton<IPasswordService, PasswordService>();
         services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);
 
         return services;

@@ -89,26 +89,26 @@ public static class ContractMapping
      * User
      */
 
-    public static UserResponse MapToResponse(this User user)
-    {
-        return new UserResponse
-        {
-            Id = user.Id,
-            Firstname = user.FirstName,
-            Lastname = user.LastName,
-            Email = user.Email,
-        };
-    }
-
-    public static User MapToUser(this CreateUser user)
-    {
-        return new User
-        {
-            Id = Guid.NewGuid(),
-            Email = user.Email,
-            Password = user.Password,
-            FirstName = user.Firstname,
-            LastName = user.Lastname
-        };
-    }
+    // public static UserResponse MapToResponse(this User user)
+    // {
+    //     return new UserResponse
+    //     {
+    //         Id = user.Id,
+    //         Firstname = user.,
+    //         Lastname = user.LastName,
+    //         Email = user.Email,
+    //     };
+    // }
+    //
+    // public static User MapToUser(this CreateUser user)
+    // {
+    //     return new User
+    //     {
+    //         Id = Guid.NewGuid(),
+    //         Email = user.Email,
+    //         Password = user.Password,
+    //         FirstName = user.Firstname,
+    //         LastName = user.Lastname
+    //     };
+    // }
 }

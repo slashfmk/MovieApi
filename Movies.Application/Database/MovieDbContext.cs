@@ -1,16 +1,18 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Movies.Application.Models;
 
 namespace Movies.Application.Database;
 
-public class MovieDbContext : DbContext
+public class MovieDbContext : IdentityDbContext<User>
 {
     public DbSet<Movie> Movies => Set<Movie>();
     public DbSet<Genre> Genres => Set<Genre>();
     public DbSet<MovieGenre> MoviesGenres => Set<MovieGenre>();
+
     public DbSet<Rating> Ratings => Set<Rating>();
-    public DbSet<User> Users => Set<User>();
-    public DbSet<Role> Roles => Set<Role>();
+    // public DbSet<User> Users => Set<User>();
+    // public DbSet<Role> Roles => Set<Role>();
 
     public MovieDbContext(DbContextOptions<MovieDbContext> options)
         : base(options)
@@ -19,6 +21,10 @@ public class MovieDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.HasDefaultSchema("identity");
+
         // Many-to-many relationship for Movies and Genres
         var movieGenres = modelBuilder.Entity<MovieGenre>();
 
@@ -40,29 +46,29 @@ public class MovieDbContext : DbContext
             .IsRequired();
 
         // Role
-        var roles = modelBuilder.Entity<Role>();
-        roles.HasKey(r => r.Id);
+        // var roles = modelBuilder.Entity<Role>();
+        // roles.HasKey(r => r.Id);
+        //
+        // roles.HasMany(u => u.Users)
+        //     .WithOne(r => r.Role)
+        //     .HasForeignKey(fk => fk.Id);
+        //
+        // roles.HasData(
+        //     new Role { Id = Guid.NewGuid(), Name = "admin", Description = "Have all the privileges" },
+        //     new Role { Id = Guid.NewGuid(), Name = "normal", Description = "Regular user with the lowest privileges" },
+        //     new Role { Id = Guid.NewGuid(), Name = "trusted", Description = "Trusted with some advanced privileges" }
+        // );
 
-        roles.HasMany(u => u.Users)
-            .WithOne(r => r.Role)
-            .HasForeignKey(fk => fk.Id);
-        
-        roles.HasData(
-            new Role { Id = Guid.NewGuid(), Name = "admin", Description = "Have all the privileges" },
-            new Role { Id = Guid.NewGuid(), Name = "normal", Description = "Regular user with the lowest privileges" },
-            new Role { Id = Guid.NewGuid(), Name = "trusted", Description = "Trusted with some advanced privileges" }
-        );
-        
-        
+
         // Users
-        var users = modelBuilder.Entity<User>();
-        users.HasKey( u => u.Id);
-        
-        users
-            .HasOne(u => u.Role)
-            .WithMany(u => u.Users)
-            .HasForeignKey(fk => fk.RoleId);
-        
+        // var users = modelBuilder.Entity<User>();
+        // users.HasKey( u => u.Id);
+
+        // users
+        //     .HasOne(u => u.Role)
+        //     .WithMany(u => u.Users)
+        //     .HasForeignKey(fk => fk.RoleId);
+
         // users.Property(p => p.Role).HasDefaultValue("normal");
 
         // Movie
@@ -81,15 +87,15 @@ public class MovieDbContext : DbContext
 
         ratings
             .HasOne(u => u.User)
-            .WithMany(r => r.Ratings)
-            .HasForeignKey(fk => fk.UserId);
+            .WithMany(r => r.Ratings);
+        // .HasForeignKey(fk => fk.UserId);
 
         ratings.Property(p => p.RatedAt).HasDefaultValue(DateTime.Now);
         ratings.Property(p => p.RatingScore).IsRequired();
 
         // Genre
         var genre = modelBuilder.Entity<Genre>();
-
+        
         genre.Property(p => p.Title).HasMaxLength(50).IsRequired();
         genre.Property(p => p.Description).HasMaxLength(150).IsRequired();
 

@@ -20,9 +20,9 @@ public class AuthController: ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] UserLoginRequest loginRequest, CancellationToken cancellationToken)
+    public async Task<IActionResult> Login([FromBody] UserLoginRequest loginRequest, CancellationToken cancellationToken)
     {
-        var user = _userService.GetByEmailAsync(loginRequest.Email);
+        var user = _userService.GetByEmailAsync(loginRequest.Email, cancellationToken);
 
         return Ok(user);
     }
@@ -35,9 +35,9 @@ public class AuthController: ControllerBase
     }
 
     [HttpPost("logout")]
-    public IActionResult Logout(CancellationToken cancellationToken)
+    public async Task<IActionResult> Logout(CancellationToken cancellationToken)
     {
-        return Ok("Logged out");
+        return Ok();
     }
     
 }
