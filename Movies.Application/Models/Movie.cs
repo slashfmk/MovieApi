@@ -10,6 +10,7 @@ public class Movie
     public int YearOfRelease { get; set; }
     
     public ICollection<MovieGenre>? MovieGenres { get; set; }
+    public ICollection<Rating>? Ratings { get; set; }
 
     public string Slug => GenerateSlug();
     

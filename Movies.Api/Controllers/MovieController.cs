@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Api.Mapping;
 using Movies.Application.Dtos.Requests;
@@ -7,6 +8,7 @@ using Movies.Application.Services;
 namespace Movies.Api.Controllers;
 
 [ApiController]
+// [Authorize]
 public class MovieController : ControllerBase
 {
     private readonly IMovieService _movieService;

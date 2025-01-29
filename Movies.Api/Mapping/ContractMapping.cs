@@ -14,10 +14,10 @@ public static class ContractMapping
             Id = Guid.NewGuid(),
             Title = request.Title,
             YearOfRelease = request.YearOfRelease,
-           // MovieGenres = request.Genres
+            // MovieGenres = request.Genres
         };
     }
-    
+
     public static Movie MapToMovie(this UpdateMovieRequest request, Guid id)
     {
         return new Movie
@@ -43,10 +43,10 @@ public static class ContractMapping
 
     public static MoviesResponse MapToResponse(this IEnumerable<Movie> movies)
     {
-        return new MoviesResponse { Items = movies.Select(MapToResponse)};
+        return new MoviesResponse { Items = movies.Select(MapToResponse) };
     }
-    
-    
+
+
     /*
      ****** Genre mapping ******
      */
@@ -59,7 +59,7 @@ public static class ContractMapping
             Description = request.Description
         };
     }
-    
+
     public static Genre MapToGenre(this UpdateGenreRequest request, Guid id)
     {
         return new Genre
@@ -82,6 +82,33 @@ public static class ContractMapping
 
     public static GenresResponse MapToResponse(this IEnumerable<Genre> movies)
     {
-        return new GenresResponse { Items = movies.Select(MapToResponse)};
+        return new GenresResponse { Items = movies.Select(MapToResponse) };
+    }
+
+    /********
+     * User
+     */
+
+    public static UserResponse MapToResponse(this User user)
+    {
+        return new UserResponse
+        {
+            Id = user.Id,
+            Firstname = user.FirstName,
+            Lastname = user.LastName,
+            Email = user.Email,
+        };
+    }
+
+    public static User MapToUser(this CreateUser user)
+    {
+        return new User
+        {
+            Id = Guid.NewGuid(),
+            Email = user.Email,
+            Password = user.Password,
+            FirstName = user.Firstname,
+            LastName = user.Lastname
+        };
     }
 }
